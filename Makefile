@@ -47,7 +47,7 @@ out/configmap-reload-linux-arm: vendor configmap-reload.go $(shell $(SRCFILES))
 
 out/configmap-reload-linux-arm64: vendor configmap-reload.go $(shell $(SRCFILES))
 	$(MKGOPATH)
-	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=am6464 GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-linux-arm64 configmap-reload.go
+	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=arm64 GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-linux-arm64 configmap-reload.go
 
 out/configmap-reload-darwin-amd64: vendor configmap-reload.go $(shell $(SRCFILES))
 	$(MKGOPATH)
