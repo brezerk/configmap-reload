@@ -76,9 +76,8 @@ PHONY: vendor
 vendor: .vendor
 
 .vendor: Gopkg.toml Gopkg.lock
-#	command -v dep >/dev/null 2>&1 || go get github.com/golang/dep/cmd/dep
 	$(MKGOPATH)
-	cd $(GOPATH)/src/$(REPOPATH) && go get -u golang.org/x/sys/unix
+	cd $(GOPATH)/src/$(REPOPATH) && go get -u golang.org/x/sys/unix && go get -u github.com/fsnotify
 	@touch $@
 
 .PHONY: clean
