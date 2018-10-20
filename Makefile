@@ -77,7 +77,7 @@ vendor: .vendor
 
 .vendor: Gopkg.toml Gopkg.lock
 	$(MKGOPATH)
-	cd $(GOPATH)/src/$(REPOPATH) && go get -u golang.org/x/sys/unix && go get -u gopkg.in/fsnotify/fsnotify.v1
+	cd $(GOPATH)/src/$(REPOPATH) && go get -u golang.org/x/sys/unix && go get -d gopkg.in/fsnotify/fsnotify.v1
 	@touch $@
 
 .PHONY: clean
