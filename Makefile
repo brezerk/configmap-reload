@@ -41,13 +41,13 @@ out/configmap-reload-linux-ppc64le: vendor configmap-reload.go $(shell $(SRCFILE
 	$(MKGOPATH)
 	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=ppc64le GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-linux-ppc64le configmap-reload.go
 
-out/configmap-reload-darwin-arm: vendor configmap-reload.go $(shell $(SRCFILES))
+out/configmap-reload-linux-arm: vendor configmap-reload.go $(shell $(SRCFILES))
 	$(MKGOPATH)
-	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=arm GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-darwin-arm configmap-reload.go
+	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=arm GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-linux-arm configmap-reload.go
 
-out/configmap-reload-darwin-arm64: vendor configmap-reload.go $(shell $(SRCFILES))
+out/configmap-reload-linux-arm64: vendor configmap-reload.go $(shell $(SRCFILES))
 	$(MKGOPATH)
-	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=am6464 GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-darwin-arm64 configmap-reload.go
+	cd $(GOPATH)/src/$(REPOPATH) && CGO_ENABLED=0 GOARCH=am6464 GOOS=linux go build --installsuffix cgo -ldflags="$(LDFLAGS)" -a -o $(BUILD_DIR)/configmap-reload-linux-arm64 configmap-reload.go
 
 out/configmap-reload-darwin-amd64: vendor configmap-reload.go $(shell $(SRCFILES))
 	$(MKGOPATH)
@@ -66,7 +66,7 @@ cross: out/configmap-reload-linux-amd64 out/configmap-reload-darwin-amd64 out/co
 
 .PHONY: checksum
 checksum:
-	for f in out/localkube out/configmap-reload-linux-amd64 out/configmap-reload-darwin-amd64 out/configmap-reload-windows-amd64.exe out/configmap-reload-darwin-arm out/configmap-reload-darwin-arm64 ; do \
+	for f in out/localkube out/configmap-reload-linux-amd64 out/configmap-reload-darwin-amd64 out/configmap-reload-windows-amd64.exe out/configmap-reload-linux-arm out/configmap-reload-linux-arm64 ; do \
 		if [ -f "$${f}" ]; then \
 			openssl sha256 "$${f}" | awk '{print $$2}' > "$${f}.sha256" ; \
 		fi ; \
